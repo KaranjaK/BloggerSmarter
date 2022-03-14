@@ -14,8 +14,8 @@ from PIL import Image
 def index():
     quotes = get_quote()
     page = request.args.get('page',1, type = int )
-    blogs = Blog.query.order_by(Blog.posted.desc()).paginate(page = page, per_page = 3)
-    return render_template('index.html', quote = quotes,blogs=blogs)
+    blog = Blog.query.order_by(Blog.posted.desc()).paginate(page = page, per_page = 3)
+    return render_template('index.html', quote = quotes,blogs=blog)
 def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)

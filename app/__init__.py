@@ -33,4 +33,6 @@ def create_app(config_name):
     #Configure image upload
     configure_uploads(app,photos)
 
+    db.init_app(app)
+
     return app
