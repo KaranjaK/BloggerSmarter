@@ -1,0 +1,27 @@
+/* Universal styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+/* FourOwFour display */
+.not-found {
+  width: 400px;
+  height: 400px;
+  color: #000;
+  top: 50%;
+  left: 50%;
+  padding: 60px 30px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  box-shadow: 8px 8px 50px #000;
+  font-family: Alfa Slab One;
+  text-align: center;
+}
+.not-found a{
+  text-decoration: none;
+  font-size: 2rem;
+  color: #000;
+}
