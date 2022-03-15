@@ -75,7 +75,7 @@ def new_blog():
         blog = Blog(title=title,content=content,user_id=user_id)
         blog.save()
         for subscriber in subscribers:
-            mail_message("New Blog Post","email/new_blog",subscriber.email,blog=blog)
+            mail_message("New Blog Post","email/newblog",subscriber.email,blog=blog)
         return redirect(url_for('main.index'))
         flash('You Posted a new Blog')
     return render_template('newblog.html', form = form)
@@ -106,7 +106,7 @@ def updateblog(blog_id):
 
 
 
-@main.route('/comment/<blog_id>', methods = ['Post','GET'])
+@main.route('/comment/<blog_id>', methods = ['POST','GET'])
 @login_required
 def comment(blog_id):
     blog = Blog.query.get(blog_id)
@@ -124,15 +124,18 @@ def subscribe():
     flash('Sucessfuly subscribed')
     return redirect(url_for('main.index'))
 
-@main.route('/blog/<blog_id>/delete', methods = ['POST'])
+@main.route('/blog/<blog_id>')
 @login_required
 def delete_post(blog_id):
     blog = Blog.query.get(blog_id)
-    if blog.user != current_user:
-        abort(403)
-    blog.delete()
-    flash("You have deleted your Blog succesfully!")
-    return redirect(url_for('main.index'))
+    try:
+        db.session.delete(blog)
+        db.session.commit()
+        flash("You have deleted your Blog succesfully!")
+        return redirect(url_for('main.index'))
+    except:
+        return 'There was a problem in deleting this blog post'
+    
 
 
 @main.route('/user/<string:username>')
@@ -140,4 +143,4 @@ def user_posts(username):
     user = User.query.filter_by(username=username).first()
     page = request.args.get('page',1, type = int )
     blogs = Blog.query.filter_by(user=user).order_by(Blog.posted.desc()).paginate(page = page, per_page = 4)
-    return render_template('userposts.html',blogs=blogs,user = user)
+    return render_template('posts.html',blogs=blogs,user = user)

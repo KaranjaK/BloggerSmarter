@@ -3,13 +3,18 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
-  background-color: #5CDB95;
+  overflow-x: hidden;
+}
+* p {
+  font-size: 1.5rem;
+}
+*::-webkit-scrollbar {
+  display: none;
 }
 /* FourOwFour display */
 .not-found {
   width: 400px;
-  height: 400px;
+  height: 100vh;
   color: #000;
   top: 50%;
   left: 50%;
@@ -21,8 +26,125 @@
   font-family: Alfa Slab One;
   text-align: center;
 }
-.not-found a{
+.not-found a {
   text-decoration: none;
   font-size: 2rem;
   color: #000;
+}
+
+/* NavBar Navigation styling */
+.navigation {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  bottom: 2rem;
+  width: 20rem;
+  border-radius: 1rem;
+  box-sizing: initial;
+  border-left: 2rem solid #5cdb95;
+  background: #5cdb95;
+  transition: 0.5s;
+  padding-top: 2rem;
+  color: #05386b;
+  font-family: Concert One;
+}
+.navigation ul {
+  position: absolute;
+  top: 12rem;
+  left: 0;
+  width: 21rem;
+  padding-left: 1rem;
+  padding-top: 6rem;
+}
+.navigation ul li {
+  position: relative;
+  list-style: none;
+  width: 100%;
+  height: 5rem;
+  left: -1rem;
+  border-top-left-radius: 3rem;
+  border-bottom-left-radius: 3rem;
+}
+.navigation ul li:hover {
+  background-color: #05386b;
+}
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: #05386b;
+}
+.navigation ul li:hover a {
+  color: #fff;
+}
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  min-width: 6rem;
+  height: 10rem;
+  line-height: 4.5rem;
+  text-align: center;
+  font-size: 1.8rem;
+}
+.navigation ul li a .material-icons {
+  font-size: 4rem;
+}
+/* Index page styling */
+.index {
+  margin-left: 25rem;
+}
+.intro {
+  text-align: center;
+  font-family: Alfa Slab One;
+  font-weight: 900;
+}
+.posttag {
+  margin-top: 4rem;
+}
+.btn {
+  font-size: 1.5rem;
+}
+/* Quotes styling */
+.quote {
+  text-align: center;
+  width: 80%;
+}
+.sub {
+  margin-left: 35rem;
+}
+/* Image styling */
+.image {
+  height: 12rem;
+  width: 12rem;
+  border-radius: 12rem;
+}
+.image2 {
+  height: 11rem;
+  width: 11rem;
+  border-radius: 11rem;
+}
+/* Blog styling */
+.blog {
+  margin-left: 25rem;
+}
+/* Profile Style */
+.profile {
+  margin-left: 8rem;
+  margin-top: 8rem;
+}
+/* Blog edit */
+.blogedit {
+  margin-left: 8rem;
+  margin-top: 20rem;
+}
+.blogedit h2 {
+  font-family: Alfa Slab One;
+  font-weight: 900;
+}
+/* Log in Page */
+#login{
+  margin-left: 8rem;
+  margin-top: 8rem;
 }

@@ -29,9 +29,9 @@
       </li>
       {% if current_user.is_authenticated %}
       <li class="list">
-        <a href="{{url_for('main.new_pitch')}}">
+        <a href="{{url_for('main.new_blog')}}">
           <span class="material-icons">hub</span>
-          <span class="title">New Pitch</span>
+          <span class="title">New Blog Post</span>
         </a>
       </li>
       {% endif %}
@@ -46,6 +46,12 @@
         <a href="{{url_for('auth.login')}}">
           <span class="material-icons">login</span>
           <span class="title">Sign in</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="{{url_for('auth.register')}}">
+          <span class="material-icons">login</span>
+          <span class="title">Sign Up</span>
         </a>
       </li>
       {%endif%}

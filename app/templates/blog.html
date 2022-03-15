@@ -1,31 +1,30 @@
 {% extends 'base.html'%}
 
 {% block content %}
-    <div class="container ">
+    <div class="container blog">
         <h1 class="text-center"> A Blog by {{blog.user.username}}</h1>
         <div class="row">
             
             <div class="col-md-12 singleblog">
                 <hr>
                 <div class="row">
-                    <div class="col-md-1">
-                        <img class="rounded-circle blog-img" src="{{ url_for('static', filename='photos/' + blog.user.profile_pic_path) }}">
+                    <div class="col-md-2">
+                        <img class="image" src="{{ url_for('static', filename='photos/' + blog.user.profile_pic_path) }}">
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                         {% for message in get_flashed_messages() %}
                         <div class="alert alert-success">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                         {{ message }}
                         </div>
                         {% endfor %}
-                        <p>By <span style="color: blue">{{blog.user.username}}</span>  on {{blog.posted.strftime('%d-%m-%Y')}}</p>
+                        <p>By <span">{{blog.user.username}}</span>  on {{blog.posted.strftime('%d-%m-%Y')}}</p>
                         <h3>Title : {{blog.title}} <span style="float: right;font-size:18px;margin-right:20px">{{blog.comment.count()}} Comments</span></h3>
                         <p>{{blog.content}}</p>
                         <div>
-                        <a class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#modalComment">Comment</a>
                         {% if blog.user == current_user %}
                             <a class="btn btn-info btn-sm m-1" href="{{url_for('main.updateblog',blog_id = blog.id)}}">Edit Blog</a>
-                            <button class="btn btn-sm btn-danger m-1" data-toggle="modal" data-target="#modalConfirmDelete" type="submit">Delete </button>
+                            <button type="button" class="btn btn-sm btn-danger m-1" data-toggle="modal" data-target="#modalConfirmDelete">Delete </button>
                         {% endif %}
                         </div>
                     </div>
@@ -42,15 +41,12 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="modalConfirmDeleteLabel"
       aria-hidden="true">
         <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
             <div class="modal-content text-center">
               <div class="modal-header d-flex justify-content-center">
                 <p class="heading">Are you sure?</p>
-              </div>
-              <div class="modal-body">
-                <i class="fas fa-times fa-4x animated rotateIn"></i>
               </div>
               <div class="modal-footer flex-center">
                 <form action="{{url_for('main.delete_post',blog_id = blog.id)}}" method="POST">
