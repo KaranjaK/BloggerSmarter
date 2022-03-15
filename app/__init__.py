@@ -41,4 +41,9 @@ def create_app(config_name):
     mail.init_app(app)
     db.init_app(app)
 
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://kk:admin@localhost/blog'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SECRET_KEY'] ='wewe'
+
+
     return app
