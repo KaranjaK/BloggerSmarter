@@ -7,7 +7,7 @@
 #### *Kelvin Karanja*
 
 ## Screenshot
-<img src='https://github.com/KaranjaK/News-Api/blob/master/images/images.png'>
+<img src=''>
 
 ## User Stories
 The user would like to.... :
