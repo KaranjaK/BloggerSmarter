@@ -4,7 +4,7 @@ from flask_bootstrap import Bootstrap
 from config import config_options
 from flask_uploads import UploadSet,configure_uploads,IMAGES
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
+from flask_login import LoginManager,current_user
 from flask_mail import Mail
 
 login_manager = LoginManager()
@@ -32,6 +32,8 @@ def create_app(config_name):
 
     #Configure image upload
     configure_uploads(app,photos)
+    login_manager.init_app(app) 
+    login_manager.login_view = 'users.login'
 
     db.init_app(app)
 
