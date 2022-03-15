@@ -7,7 +7,7 @@
 #### *Kelvin Karanja*
 
 ## Screenshot
-<img src=''>
+<img src='https://github.com/KaranjaK/BloggerSmarter/blob/master/app/static/photos/Screenshot.png'>
 
 ## User Stories
 The user would like to.... :
