@@ -2,12 +2,13 @@ from flask import render_template,redirect,url_for,abort,request,flash
 from app.main import main
 from app.models import User,Blog,Comment,Subscriber
 from .forms import UpdateProfile,CreateBlog
-from .. import db
+from .. import db,photos
 from app.request import get_quote
 from flask_login import login_required,current_user
 from ..email import mail_message
-import secrets
-import os
+from flask.helpers import flash
+import os, secrets
+from PIL import Image
 
 @main.route('/')
 def index():
@@ -20,7 +21,12 @@ def save_picture(form_picture):
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_filename = random_hex + f_ext
     picture_path = os.path.join('app/static/photos', picture_filename)
-    return picture_path
+    
+    output_size = (200, 200)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)
+    return picture_filename
 
 @main.route('/profile',methods = ['POST','GET'])
 @login_required
