@@ -65,12 +65,7 @@
               src="{{ url_for('static', filename='photos/' + blog.user.profile_pic_path) }}"
             />
             <p id="usern">
-              <a
-                href="{{url_for('main.user_posts',username = blog.user.username)}}"
-                ><span
-                  ><strong>{{blog.user.username | title}}</strong></span
-                >
-              </a>
+              <strong>{{blog.user.username | title}}</strong></span>
             </p>
           </div>
           <div class="col-md-10 pr-4 d-justify userblog">
@@ -81,21 +76,33 @@
               >
             </h4>
             <p>{{blog.content}}</p>
+            
+            {% if current_user.is_authenticated %}
+            <p>
+              <a
+                class="btn btn-sm btn-success"
+                href="{{url_for('main.user_posts',username = blog.user.username)}}"
+              >Add Comments</a>
+              <a  class="btn btn-sm btn-primary" href="{{url_for('main.blog',id = blog.id)}}">View Comments</a>
+              {{blog.comment.count()}} Comments
+            </p>
+            {%else%}
             <p>
               <a
                 class="btn btn-sm btn-success"
                 href="{{url_for('main.blog',id = blog.id)}}"
-              >
-                View Comments</a
-              >
+              >View Comments</a>
               {{blog.comment.count()}} Comments
             </p>
+            {% endif %}
           </div>
         </div>
         <hr />
       </div>
 
-      {% endfor %} {% for page_num in blogs.iter_pages(left_edge = 1, right_edge
+      {% endfor %} 
+      
+      {% for page_num in blogs.iter_pages(left_edge = 1, right_edge
       = 1, left_current=1, right_current = 2) %} {% if page_num %} {% if
       blogs.page == page_num %}
       <a

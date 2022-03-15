@@ -127,14 +127,15 @@ def subscribe():
 @main.route('/blog/<blog_id>')
 @login_required
 def delete_post(blog_id):
-    blog = Blog.query.get(blog_id)
+    blog = Blog.query.get_or_404(blog_id)
     try:
         db.session.delete(blog)
         db.session.commit()
         flash("You have deleted your Blog succesfully!")
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.blog', id=blog_id))
     except:
-        return 'There was a problem in deleting this blog post'
+        flash('There was a problem in deleting this blog post')
+        return redirect(url_for('main.index'))
     
 
 

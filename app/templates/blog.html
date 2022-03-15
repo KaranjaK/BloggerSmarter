@@ -5,7 +5,7 @@
         <h1 class="text-center"> A Blog by {{blog.user.username}}</h1>
         <div class="row">
             
-            <div class="col-md-12 singleblog">
+            <div class="col-md-11 singleblog">
                 <hr>
                 <div class="row">
                     <div class="col-md-2">
@@ -24,7 +24,7 @@
                         <div>
                         {% if blog.user == current_user %}
                             <a class="btn btn-info btn-sm m-1" href="{{url_for('main.updateblog',blog_id = blog.id)}}">Edit Blog</a>
-                            <button type="button" class="btn btn-sm btn-danger m-1" data-toggle="modal" data-target="#modalConfirmDelete">Delete </button>
+                            <a class="btn btn-danger btn-sm m-1" href="{{url_for('main.delete_post', blog_id=blog.id)}}">Delete Blog</a>
                         {% endif %}
                         </div>
                     </div>
@@ -38,23 +38,6 @@
                 <hr>      
             </div>
             <div class="col-md-1"></div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="modalConfirmDeleteLabel"
-      aria-hidden="true">
-        <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
-            <div class="modal-content text-center">
-              <div class="modal-header d-flex justify-content-center">
-                <p class="heading">Are you sure?</p>
-              </div>
-              <div class="modal-footer flex-center">
-                <form action="{{url_for('main.delete_post',blog_id = blog.id)}}" method="POST">
-                    <input  type="submit" class="btn  btn-outline-danger btn-sm" value="Yes">
-                </form>
-                <a type="button" class="btn btn-sm btn-danger waves-effect" data-dismiss="modal">No</a>
-              </div>
-            </div>
         </div>
     </div>
 
